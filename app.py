@@ -1,5 +1,7 @@
+# app.py
+
 from flask import Flask, render_template, request
-from script import get_instagram_video_url
+from script import get_instagram_video_url  # Import the function from script.py
 
 app = Flask(__name__)
 

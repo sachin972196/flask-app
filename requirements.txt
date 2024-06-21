@@ -2,3 +2,4 @@ Flask
 instaloader
 sympy==1.12
 gunicorn
+dotenv

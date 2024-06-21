@@ -1,4 +1,4 @@
-Flask==3.0.3
-instaloader==4.11
+Flask
+instaloader
 sympy==1.12
-gunicorn==22.0.0
+gunicorn 

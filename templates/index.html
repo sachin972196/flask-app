@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Instagram Videos - Fast and Free</title>
+    <meta name="description" content="Download Instagram videos and reels quickly and for free. Simply paste the link and get your video or audio instantly.">
+    <meta name="keywords" content="download Instagram video, Instagram reel downloader, free Instagram video download, Instagram audio download">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Download Instagram Videos",
+      "url": "http://www.yourwebsite.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "http://www.yourwebsite.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script>
+        function pasteLink() {
+            navigator.clipboard.readText().then(text => {
+                document.getElementById('instagram_url').value = text;
+                document.getElementById('downloadForm').submit();
+            });
+        }
+
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Download Instagram Videos and Reels Instantly</h1>
+        <form id="downloadForm" action="{{ url_for('generate') }}" method="post" onsubmit="showLoading()">
+            <div class="input-group">
+                <input type="text" id="instagram_url" name="instagram_url" placeholder="Paste Instagram video link..." required>
+                <button type="button" onclick="pasteLink()">Paste</button>
+                <button type="submit">Generate Video</button>
+            </div>
+        </form>
+        <div id="loading" style="display: none;">Loading...</div>
+        {% if video_url %}
+        <div class="video-container">
+            <video controls alt="Instagram video">
+                <source src="{{ video_url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            
+            </form>
+            <a href="{{ video_url }}" download><button>Download Video</button></a>
+        </div>
+        {% elif error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
